@@ -1,0 +1,16 @@
+/* B2u2;  out[0] = !in[1]&!in[0]
+          out[1] = !in[1]& in[0]
+		  out[2] =  in[1]&!in[0]
+		  out[3] =  in[1]& in[0]
+*/
+CHIP B2u2{
+IN in[2];
+OUT out[4];
+PARTS:
+Not(in=in[0], out=notin0);
+Not(in=in[1], out=notin1);
+And(a=notin1,b=notin0,out=out[0]);
+And(a=notin1,b=in[0],out=out[1]);
+And(a=in[1],b=notin0,out=out[2]);
+And(a=in[1],b=in[0],out=out[3]);
+}

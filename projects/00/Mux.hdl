@@ -1,0 +1,10 @@
+/* Multiplexe out = sel && !a || sel && a  */
+CHIP Mux{
+IN a, b,sel;
+OUT out;
+PARTS:
+Not(in=sel, out=notsel);
+And(a=a, b=notsel, out=andanotsel);
+And(a=b, b=sel, out=aandsel);
+Or(a=andanotsel, b=aandsel, out=out);
+}

@@ -1,0 +1,37 @@
+// This file is part of the materials accompanying the book 
+// "The Elements of Computing Systems" by Nisan and Schocken, 
+// MIT Press. Book site: www.idc.ac.il/tecs
+// File name: tools/builtIn/Mux4Way16.hdl
+
+/**
+ * 4-way 16-bit multiplexor.  
+ * out = a -- if sel=00
+ *       b -- if sel=01
+ *       c -- if sel=10
+ *       d -- if sel=11
+ */
+
+CHIP Mux4Way16 {
+     
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+PARTS:
+    Bin2To4(in=sel,a=s0,b=s1,c=s2,d=s3);
+	
+	Boole16(in=s0,out=sa);
+	And16(a=a,b=sa,out=as);
+	
+	Boole16(in=s1,out=sb);
+	And16(a=b,b=sb,out=bs);
+
+	Boole16(in=s2,out=sc);
+	And16(a=c,b=sc,out=cs);
+
+	Boole16(in=s3,out=sd);
+	And16(a=d,b=sd,out=ds);
+	
+	Or16(a=as,b=bs,out=ab);
+	Or16(a=cs,b=ds,out=cd);
+	
+	Or16(a=ab,b=cd,out=out);
+}

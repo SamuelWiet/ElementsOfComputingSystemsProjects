@@ -1,0 +1,8 @@
+/* Select1to2   */
+CHIP Select1to2{
+IN in;
+OUT a,b;
+PARTS:
+Not(in=in, out=a);
+Driver(in=in,out=b);
+}

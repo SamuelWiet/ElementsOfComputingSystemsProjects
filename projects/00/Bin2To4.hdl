@@ -1,0 +1,23 @@
+/* B2u3;  a = !in[1]&!in[0]
+          b = !in[1]& in[0]
+		  c =  in[1]&!in[0]
+		  d =  in[1]& in[0]
+		  
+		  out = 2 hoch in 
+*/
+CHIP Bin2To4{
+
+IN in[2];
+OUT a,b,c,d;
+
+PARTS:
+
+Not(in=in[0], out=notin0);
+Not(in=in[1], out=notin1);
+
+And(a=notin1,b=notin0,out=a);
+And(a=notin1,b=in[0],out=b);
+And(a=in[1], b=notin0,out=c);
+And(a=in[1],b=in[0],out=d);
+
+}

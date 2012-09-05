@@ -1,0 +1,53 @@
+// File name: 00/Mux8Way16.hdl
+
+/**
+ * 8-way 16-bit multiplexor.  
+ * out = a -- if sel=000
+ *       b -- if sel=001
+ *       ...
+ *       h -- if sel=111
+ */
+ 
+CHIP Mux8Way16 {
+
+    IN  a[16], b[16], c[16], d[16],
+        e[16], f[16], g[16], h[16],
+        sel[3];
+
+    OUT out[16];
+    PARTS:
+    Bin2To8(in=sel,a=s0,b=s1,c=s2,d=s3,e=s4,f=s5,g=s6,h=s7);
+	
+	Boole16(in=s0,out=sa);
+	And16(a=a,b=sa,out=as);
+	
+	Boole16(in=s1,out=sb);
+	And16(a=b,b=sb,out=bs);
+
+	Boole16(in=s2,out=sc);
+	And16(a=c,b=sc,out=cs);
+
+	Boole16(in=s3,out=sd);
+	And16(a=d,b=sd,out=ds);
+
+	Boole16(in=s4,out=se);
+	And16(a=e,b=se,out=es);
+	
+	Boole16(in=s5,out=sf);
+	And16(a=f,b=sf,out=fs);
+
+	Boole16(in=s6,out=sg);
+	And16(a=g,b=sg,out=gs);
+
+	Boole16(in=s7,out=sh);
+	And16(a=h,b=sh,out=hs);
+	
+	Or16(a=as,b=bs,out=ab);
+	Or16(a=cs,b=ds,out=cd);
+	Or16(a=es,b=fs,out=ef);
+	Or16(a=gs,b=hs,out=gh);
+	
+	Or16(a=ab,b=cd,out=abcd);
+	Or16(a=ef,b=gh,out=efgh);
+	Or16(a=abcd,b=efgh,out=out);
+}

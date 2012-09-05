@@ -1,0 +1,8 @@
+/** BImplA out = (b => a) */
+CHIP BImplA{
+IN a, b;
+OUT out;
+PARTS:
+Nand(a=a, b=b, out=nanda);
+Nand(a=nanda, b=b,out=out);
+}

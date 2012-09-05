@@ -1,0 +1,44 @@
+/* B2u3;  out[0] = !in[2]&!in[1]&!in[0]
+          out[1] = !in[2]&!in[1]& in[0]
+		  out[2] = !in[2]& in[1]&!in[0]
+		  out[3] = !in[2]& in[1]& in[0]
+		  out[0] =  in[2]&!in[1]&!in[0]
+          out[1] =  in[2]&!in[1]& in[0]
+		  out[2] =  in[2]& in[1]&!in[0]
+		  out[3] =  in[2]& in[1]& in[0]
+		  
+		  out = 2 hoch in 
+*/
+CHIP Bin2To8{
+
+IN in[3];
+OUT a,b,c,d,e,f,g,h;
+
+PARTS:
+
+Not(in=in[0], out=notin0);
+Not(in=in[1], out=notin1);
+Not(in=in[2], out=notin2);
+
+And(a=notin1,b=notin0,out=notin1andnotin0);
+And(a=notin1,b=in[0],out=notin1andin0);
+And(a=in[1], b=notin0,out=in1andnotin0);
+And(a=in[1],b=in[0],out=in1andin0);
+
+//out[0] = !in[2]&!in[1]&!in[0]
+And(a=notin2,b=notin1andnotin0,out=a);
+//out[1] = !in[2]&!in[1]& in[0]
+And(a=notin2,b=notin1andin0,out=b);
+//out[2] = !in[2]& in[1]&!in[0]
+And(a=notin2,b=in1andnotin0,out=c);
+//out[3] = !in[2]& in[1]& in[0]
+And(a=notin2,b=in1andin0,out=d);
+//out[0] =  in[2]&!in[1]&!in[0]
+And(a=in[2],b=notin1andnotin0,out=e);
+//out[1] =  in[2]&!in[1]& in[0]
+And(a=in[2],b=notin1andin0,out=f);
+//out[2] =  in[2]& in[1]&!in[0]
+And(a=in[2],b=in1andnotin0,out=g);
+//out[3] =  in[2]& in[1]& in[0]
+And(a=in[2],b=in1andin0,out=h);
+}

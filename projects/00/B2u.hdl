@@ -1,0 +1,9 @@
+// B2u;  a = !in; b=in 
+
+CHIP B2u{
+IN in;
+OUT a,b;
+PARTS:
+Not(in=in, out=a);
+Driver(in=in,out=b);
+}

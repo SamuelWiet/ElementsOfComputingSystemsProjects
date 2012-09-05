@@ -1,0 +1,8 @@
+/** Not out = not in */
+CHIP Not{
+IN in;
+OUT out;
+PARTS:
+// based on nand: not(in)= nand(in,in)
+Nand(a=in, b=in, out=out);
+}

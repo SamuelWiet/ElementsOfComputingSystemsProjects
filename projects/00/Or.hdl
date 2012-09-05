@@ -1,0 +1,10 @@
+/** Or out = nand(nand(a,a), nand(b,b)) */
+CHIP Or{
+IN a,b;
+OUT out;
+PARTS:
+// based on Nand
+Nand(a=a, b=a, out=nota);
+Nand(a=b, b=b, out=notb);
+Nand(a=nota, b=notb, out=out);
+}

@@ -1,0 +1,9 @@
+CHIP Test {
+
+    IN  sel[3];
+
+    OUT out[16];
+    PARTS:
+    B2u3(in=sel,out=selu);
+	Boole16(in=selu[0],out=out);
+}

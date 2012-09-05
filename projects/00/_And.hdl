@@ -1,0 +1,7 @@
+/** And gate. out = a and b */
+CHIP And{
+IN a, b;
+OUT out;
+PARTS:
+Or(a=a, b=b, out=out);
+}

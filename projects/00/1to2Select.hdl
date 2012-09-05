@@ -1,0 +1,9 @@
+/* Select1to2   */
+CHIP Select1to2{
+IN sel;
+OUT a,b;
+PARTS:
+Not(in=sel, out=notsel);
+And(a=TRUE, b=notsel, out=a);
+And(a=TRUE, b=sel, out=b);
+}
